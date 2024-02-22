@@ -5,8 +5,8 @@ function calcularPagoCuotas(monto, cuotas) {
       return "El número de cuotas debe ser un entero positivo.";
   }
 
-  // Calcular el pago mensual
-  let pagoMensual = monto / cuotas;
+  // Calcular el pago mensual aproximado
+  let pagoMensual = Math.ceil(monto / cuotas);
   return pagoMensual;
 }
 
@@ -23,7 +23,7 @@ function mostrarPlanPagos(monto, cuotas) {
   // Mostrar el plan de pagos
   let planPagos = "Plan de pagos:\n";
   for (let i = 1; i <= cuotas; i++) {
-      planPagos += `Cuota ${i}: $${pagoMensual.toFixed(0)}\n`;
+      planPagos += `Cuota ${i}: $${pagoMensual}\n`;
   }
 
   return planPagos;
