@@ -37,7 +37,7 @@ function mostrarPlanPagos(monto, cuotas) {
       if (i === cuotas) {
           cuota += intereses;
       }
-      planPagos += `Cuota ${i}: $${cuota.toFixed(0)}\n`;
+      planPagos += `Cuota ${i}: $${cuota.toFixed(2)}\n`;
   }
 
   return planPagos;
