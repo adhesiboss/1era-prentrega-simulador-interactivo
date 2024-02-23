@@ -7,6 +7,13 @@ function calcularPagoCuotas(monto, cuotas) {
 
   // Calcular el pago mensual aproximado
   let pagoMensual = Math.ceil(monto / cuotas);
+
+  // Verificar si el pago mensual es menor que el monto prestado
+  if (pagoMensual * cuotas < monto) {
+      let intereses = monto - (pagoMensual * cuotas);
+      pagoMensual += intereses / cuotas;
+  }
+
   return pagoMensual;
 }
 
@@ -20,10 +27,17 @@ function mostrarPlanPagos(monto, cuotas) {
   // Calcular el pago mensual
   let pagoMensual = calcularPagoCuotas(monto, cuotas);
 
+  // Calcular intereses adicionales
+  let intereses = monto - (pagoMensual * cuotas);
+
   // Mostrar el plan de pagos
   let planPagos = "Plan de pagos:\n";
   for (let i = 1; i <= cuotas; i++) {
-      planPagos += `Cuota ${i}: $${pagoMensual}\n`;
+      let cuota = pagoMensual;
+      if (i === cuotas) {
+          cuota += intereses;
+      }
+      planPagos += `Cuota ${i}: $${cuota.toFixed(0)}\n`;
   }
 
   return planPagos;
